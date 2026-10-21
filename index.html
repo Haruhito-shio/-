@@ -550,7 +550,8 @@ tr.now td{background:var(--t2)}
       '<div class="fig"><dt>预计最终 pt</dt><dd><span class="v">' + fmt(R.final) + '</span><span class="n">封顶 ' + fmt(p.cap) + '</span></dd></div>' +
       '<div class="fig"><dt>最终报酬宝石</dt><dd><span class="v">' + fmt(R.rwF) + '</span><span class="n">现在已有 ' + fmt(R.rwN) + '，每 ' + fmt(p.rstep) + ' pt 得 ' + fmt(p.rgem) + '</span></dd></div>' +
       '<div class="fig"><dt>之后买心花费</dt><dd><span class="v">' + fmt(R.remGems) + '</span><span class="n">' + R.remPacks + ' 组，' + fmt(R.remPacks * p.hpp) + ' 颗心</span></dd></div>' +
-      '<div class="fig"><dt>从现在起净收益</dt><dd><span class="v">' + fmt(R.net) + '</span><span class="n">' + (R.remGems > 0 ? '宝石，每 1 宝石回 ' + R.roi.toFixed(1) + ' 宝石' : '宝石，不需要买心') + '</span></dd></div>';
+      '<div class="fig"><dt>从现在起净收益</dt><dd><span class="v">' + fmt(R.net) + '</span><span class="n">' + (R.remGems > 0 ? '宝石，每 1 宝石回 ' + R.roi.toFixed(1) + ' 宝石' : '宝石，不需要买心') + '</span></dd></div>'+
+      '<div class="fig"><dt>全程累计净收益</dt><dd><span class="v">' + fmt(R.rwF - R.tot.gems) + '</span><span class="n">最终报酬 ' + fmt(R.rwF) + ' − 全程买心 ' + fmt(R.tot.gems) + '</span></dd></div>';
     var n = [];
     n.push('<p>按你的作息，一天约打 <b>' + typ.games + ' 局</b>（含门票），买心约 <b>' + typ.packs + ' 组</b>，约 ' + fmt(typ.pts) + ' pt。打勾和计划见下面的「每日清单」。</p>');
     if (p.cur >= p.target) n.push('<p>最低目标 ' + fmt(p.target) + ' pt 已经达成。</p>');

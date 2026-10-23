@@ -538,6 +538,15 @@ tr.now td{background:var(--t2)}
       '</div>' +
       '<div class="bar" role="progressbar" aria-label="今日计划完成度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div>' +
       '<p class="tmsg">' + msg + '</p><p class="tmsg">' + g + '</p>' +
+      (function(){
+        var avail = (R.wins||[]).reduce(function(s,w){ return s + (w[1]-w[0]); }, 0);
+        var avgG = R.typ.games > 0 ? R.typ.pts / R.typ.games : p.hp;
+        var planMin = R.typ.games * p.mpg;
+        var quotaMin = (avgG > 0 ? R.quota / avgG : 0) * p.mpg;
+        function mm(m){ m = Math.max(0, Math.round(m)); var h = Math.floor(m/60), r = m%60; return (h?h+'小时':'') + (r ? (h?' ':'')+r+'分钟' : (h?'':'0分钟')); }
+        var NORM=' style="color:inherit"', RED=' style="color:#e2557a"', BLU=' style="color:#3b9bd6"';
+        return '<p class="tmsg">可打时段共 ' + mm(avail) + '。按计划打约 <b' + NORM + '>' + mm(planMin) + '</b>，空闲约 <b' + RED + '>' + mm(avail-planMin) + '</b>；压线打约 <b' + NORM + '>' + mm(quotaMin) + '</b>，空闲约 <b' + RED + '>' + mm(avail-quotaMin) + '</b>，比按计划每天多 <b' + BLU + '>' + mm(planMin-quotaMin) + '</b>。</p>';
+      })() +
       '<div class="t-actions"><button type="button" class="ghost" id="tickAll">今天的时段全部打勾</button><span class="hint">更新「当前 pt」后，今天和之后的计划会自动重算。</span></div>';
   }
 

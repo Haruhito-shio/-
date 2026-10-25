@@ -487,6 +487,7 @@ tr.now td{background:var(--t2)}
     var rt = -1, rg = -1;
     rows.forEach(function(r, i){ if (rt < 0 && r.cum >= p.target) rt = i; if (rg < 0 && r.cum >= p.goal) rg = i; });
     var plan = rows[0].pts, frac = plan > 0 ? Math.max(0, (plan - pn) / plan) : 0, remDays = (DAYS - 1) + frac;
+    if (BASE < ACTEND) remDays = Math.max(0.01, remDays - (1 - ENDH / 24));
     var typ = rows[Math.min(1, rows.length - 1)];
     return {rows:rows, wins:s2.wins, tot:tot, final:cum, rwF:rwF, rwN:rwN, remGems:remGems, remPacks:remPacks, gain:gain, net:gain - remGems,
       roi: remGems > 0 ? gain / remGems : 0, reachT:rt, reachG:rg, typ:typ,
